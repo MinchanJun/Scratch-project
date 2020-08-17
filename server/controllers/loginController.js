@@ -1,5 +1,5 @@
 const { google } = require('googleapis');
-
+const path = require('path')
 const loginController = {};
 
 loginController.oAuth = async (req, res, next) => {
@@ -7,7 +7,7 @@ loginController.oAuth = async (req, res, next) => {
     const oauth2Client = new google.auth.OAuth2(
         '559739375459-cg35egmegke4g3b3cbi66ria81b66nro.apps.googleusercontent.com',
         '35JN7BXlmbYPTurgXFGwQWSA',
-        'http://localhost:3000/api/login/google'
+        path.resolve('/', '/api/login/google')
     );
 
     const scopes = [
@@ -32,7 +32,7 @@ loginController.afterConsent = (req, res, next) => {
     const oauth2Client = new google.auth.OAuth2(
         '559739375459-cg35egmegke4g3b3cbi66ria81b66nro.apps.googleusercontent.com',
         '35JN7BXlmbYPTurgXFGwQWSA',
-        'http://localhost:3000/api/login/google'
+         path.resolve('/', '/api/login/google')
     );
     
     oauth2Client.getToken(req.query.code)
